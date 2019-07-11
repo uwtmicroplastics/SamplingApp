@@ -20,6 +20,13 @@ label {
   display: inline-block;
 }
 
+.sublabel {
+  padding-left: 30px;
+  display: inline-block;
+}
+
+
+
 .block{
   display: block;
   border-radius: 4px;
@@ -81,6 +88,22 @@ label {
   margin-top: 6px;
 }
 
+.label {
+  display: block;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+.input {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin:0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+
 .header {
   text-align: center;
 }
@@ -134,9 +157,9 @@ label {
 
 }
 </style>
-<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 <script>
   function getStartLocation()
@@ -197,7 +220,32 @@ label {
 <div data-role="page" id="materials">
 
   <div role="main" class="ui-content">
-    <p>This is a checklist of things you need</p>
+    <h1>This is a checklist of things you will need</h1>
+      <div class= "check">
+      <form name="materiallist">
+          <label><input type="checkbox"/> Sampling net with line & flow meter </label> <br>
+          <label><input type="checkbox"/> Zip ties </label> <br>
+          <label><input type="checkbox"/> Small crescent wrench </label> <br>
+          <label><input type="checkbox"/> Phillip’s-head screwdriver </label> <br>
+          <label><input type="checkbox"/> Syringe </label> <br>
+          <label><input type="checkbox"/> Labeling tape </label><br>
+          <label><input type="checkbox"/> Sharpie </label> <br>
+          <label><input type="checkbox"/> Sample log </label><br>
+          <label><input type="checkbox"/> Pencil</label> <br>
+          <label><input type="checkbox"/> Sharpener </label> <br>
+          <label><input type="checkbox"/> Clipboard </label><br>
+          <label><input type="checkbox"/> Sieves </label> <br>
+      </div>
+      <div class="sublabel"> 
+          <label><input type="checkbox"/> 0.5 mm Sieve </label> <br>
+          <label><input type="checkbox"/> .330 mm Sieve </label> <br>
+      </div>
+      <div class= "check"> 
+          <label><input type="checkbox"/> Squirt bottle </label><br>
+          <label><input type="checkbox"/> Electrical tape </label> <br>
+          <label><input type="checkbox"/> Duct tape</label> <br>
+      </form>
+      </div>
   </div><!-- /content -->
       <div class="pagenav row">
         <a data-role= "button" href="#precheck" class="submitbtn"> Go to Pre-Sampling Checklist </a>
@@ -207,10 +255,34 @@ label {
 <!-- Start of second page (Pre-checklist)
  /page -->
 <div data-role="page" id="precheck">
-   <div role="page" class="ui-content">
-    <p>Do before sampling</p>
-  </div><!-- /content -->
+   <div role="main" class="ui-content">
+    <h1>Before Sampling:</h1>
+      <div class= "check">
+      <form name="materiallist">
+        <h2>Pre-Sampling: </h2>
+          <label><input type="checkbox" required/> Ensure Cod End is Secure </label> <br>
+          <label><input type="checkbox"/> Check for Holes in Net </label> <br>
+          <label><input type="checkbox"/> Check for Missing Zip-Ties, Replace as necessary </label> <br>
+          <label><input type="checkbox"/> Tighten Brindle Connection with Crescent Wrench </label> <br>
+          <label><input type="checkbox"/> Check That Flowmeter is Secure </label> <br>
+          <label><input type="checkbox"/> Check That Line is Secure and Free of Knots </label><br>
+          <label><input type="checkbox"/> Locate 5 Empty Jars </label> <br>
+          <label><input type="checkbox"/> Label 3 Sample Jars (or more if necessary) </label>
+          <h5>Convention for sample label:Group Name, date, sample number: xxx_yyyymmdd_# <br> Ex: UWS_20190819_1 <h5>
+          <label><input type="checkbox"/> Clean Sieves</label> <br>
+          <label><input type="checkbox"/> Fill Squirt Bottles </label> <br>
+          <label><input type="checkbox"/> Assemble Sample Jars, Sieves, and Squirt Bottles in a Plastic Tub </label><br>
+
+      <h2>Preparation of the net: </h2>
+          <label><input type="checkbox"/>Ensure line is not tangled</label> <br>
+          <label><input type="checkbox"/>Tie-off line to sampling net </label> <br>
+          <label><input type="checkbox"/> Tie-off line to cleat on boat. If using prop/power, ensure net is out of prop-wash </label><br>
+
+      </form>
+      </div>
+       </div>
       <div class="pagenav row">
+
         <a data-role= "button" href="#form" class="submitbtn"> Start Sampling! </a>
       </div>
     </div>
@@ -218,7 +290,7 @@ label {
 
 <!--Start of third page (Form) -->
 <div data-role="page" id="form">
-   <div role="page" class="ui-content">
+   <div role="main" class="ui-content">
 <div class= "header">
 <h1>Microplastic Sampling Form</h1>
 </div>
@@ -248,7 +320,7 @@ label {
         <label for="sample_id">Sample ID Number</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sample_id" name="sample_id" placeholder="ex: UWT-123">
+        <input type="text" id="sample_id" name="sample_id" placeholder="ex: UWT-20190819_1">
       </div>
     </div>
     <div class="row">
