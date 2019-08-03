@@ -161,6 +161,9 @@ label {
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+  <link rel="stylesheet" href="jquery.ui.datepicker.mobile.css" /> 
+  <script src="jQuery.ui.datepicker.js"></script>
+  <script src="jquery.ui.datepicker.mobile.js"></script>
 <script>
   function getStartLocation()
         {
@@ -303,7 +306,7 @@ label {
         <label for="sample_date">Sample Date</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sample_date" name="sample_date" placeholder="mm/dd/yyyy">
+        <input type="date" id="date" name="sample_date" value= ""placeholder="mm/dd/yyyy" required>
       </div>
     </div>
 
@@ -312,7 +315,7 @@ label {
         <label for="sample_location">Sample Location</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sample_location" name="sample_location" placeholder="ex: Commencement Bay">
+        <input type="text" id="sample_location" name="sample_location" placeholder="ex: Commencement Bay" required>
       </div>
     </div>
     <div class="row">
@@ -320,7 +323,7 @@ label {
         <label for="sample_id">Sample ID Number</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sample_id" name="sample_id" placeholder="ex: UWT-20190819_1">
+        <input type="text" id="sample_id" name="sample_id" placeholder="ex: UWT-20190819_1" required>
       </div>
     </div>
     <div class="row">
@@ -328,7 +331,7 @@ label {
         <label for="sampler">Sampler</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sampler" name="sampler" placeholder="Your Name">
+        <input type="text" id="sampler" name="sampler" placeholder="Your Name" required>
       </div>
     </div>
         <div class="row">
@@ -336,7 +339,7 @@ label {
         <label for="net_#">Net #</label>
       </div>
       <div class="col-75">
-        <input type="text" id="net_#" name="net_#">
+        <input type="text" id="net_#" name="net_#" required>
       </div>
     </div>
     <div class="row">
@@ -377,7 +380,7 @@ label {
         <label for="start_flow">Start Flowmeter</label>
       </div>
       <div class="col-75">
-        <input type="text" id="start_flow" name="start_flow" placeholder="Reading at start of sampling">
+        <input type="text" id="start_flow" name="start_flow" placeholder="Reading at start of sampling" required>
       </div>
     </div>
       <div class="row">
@@ -417,7 +420,7 @@ label {
         <label for="net_#">End Flowmeter</label>
       </div>
       <div class="col-75">
-        <input type="text" id="end_flow" name="end_flow" placeholder="Reading at end of sampling">
+        <input type="text" id="end_flow" name="end_flow" placeholder="Reading at end of sampling" required>
       </div>
     </div>
        <div class="row">
@@ -441,6 +444,13 @@ label {
 </div>
 </div>
     <script>
+  //Function to make Mobile friendly Calendar
+  $( document ).bind( "mobileinit", function(){
+    $.mobile.page.prototype.options.degradeInputs.date = true;
+  }); 
+</script> 
+<script>
+
       function oneclick() 
       {
         var scriptURL = 'https://script.google.com/macros/s/AKfycbwkhQBiZ12mZYhqpifKPvdidJiwl9oATmaPCgsGsMvP1DBzhqY/exec'
