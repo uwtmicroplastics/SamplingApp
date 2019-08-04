@@ -166,11 +166,11 @@ br {
 
 <script>
 
+
     //Function to make Mobile friendly Calendar
   $( document ).bind( "mobileinit", function(){
     $.mobile.page.prototype.options.degradeInputs.date = true;
   }); 
-
   function getStartLocation()
         {
           // Check whether browser supports Geolocation API or not
@@ -451,11 +451,12 @@ br {
       {
         var scriptURL = 'https://script.google.com/macros/s/AKfycbwkhQBiZ12mZYhqpifKPvdidJiwl9oATmaPCgsGsMvP1DBzhqY/exec'
         var form = document.forms['microplastic-sampling']
-           
-      fetch(scriptURL, { mode: 'no-cors', method: 'GET', body: new FormData(form)})
+        
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => alert("Success!  Press Ok to start a new sample"))
           .catch(error => alert("Something went wrong.  Try again?"))
-           }
+      }
     
     </script>
 
@@ -472,7 +473,9 @@ br {
 
 <script>
 //script to send to google sheet using Fetch API
-
-
+var form = document.forms['microplastic-sampling']
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+  })
 </script>
 
