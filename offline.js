@@ -1,4 +1,4 @@
-importScripts("https://unpkg.com/dexie@latest/dist/dexie.js")
+importScripts("dexie.js")
 
 // Listen to fetch requests
 self.addEventListener('fetch', function(event) {
