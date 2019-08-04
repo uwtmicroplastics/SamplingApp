@@ -165,7 +165,19 @@ br {
   <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
 <script>
+//Register service worker for caching offline
 
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+    navigator.serviceWorker.register('offline.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
 
     //Function to make Mobile friendly Calendar
   $( document ).bind( "mobileinit", function(){
