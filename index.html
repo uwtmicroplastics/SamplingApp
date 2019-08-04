@@ -15,6 +15,12 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
+input[type="checkbox"] {
+  background-color: red !important
+  size: 30px;
+}
+
+
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
@@ -25,7 +31,11 @@ label {
   display: inline-block;
 }
 
-
+ .check {
+  color: black !important;
+  font-weight: bold !important;
+  font-size: 20px !important;
+ }
 
 .block{
   display: block;
@@ -33,10 +43,10 @@ label {
   width: 100%;
   border: black ;
   background-color: #4CAF50;
-  color: black;
+  color: white !important;
   border-color: black;
   padding: 14px 28px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   cursor: pointer;
   text-align: center;
@@ -48,7 +58,7 @@ label {
   border: black ;
   background-color: #4CAF50 !important;
   text-shadow: none !important;
-  color: black;
+  color: white !important;
   border-color: black;
   padding: 14px 28px;
   font-size: 24px;
@@ -63,14 +73,15 @@ label {
   border: black ;
   background-color: #4CAF50 !important;
   text-shadow: none !important;
-  color: black;
-  border-color: black;
+  color: white !important;
+  border-color: black !important;
   padding: 14px 28px;
-  font-size: 24px;
+  font-size: 24px !important;
   font-weight: bold;
-  cursor: pointer;
+  
   text-align: center;
 }
+
 
 .block:hover {
   background-color: #ddd;
@@ -113,26 +124,7 @@ label {
   margin-top: 6px;
 }
 
-/*.col-75b {
-  display: block;
-  border-radius: 4px;
-  border: black ;
-  background-color: #4CAF50;
-  color: black;
-  border-color: black;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  float: left;
-  width: 100%;
-  height: 45px;
-  margin-top: 6px;
-  resize: vertical;
-}
-*/
+
 
 .col-75n {
   float: left;
@@ -164,6 +156,7 @@ label {
   <link rel="stylesheet" href="jquery.ui.datepicker.mobile.css" /> 
   <script src="jQuery.ui.datepicker.js"></script>
   <script src="jquery.ui.datepicker.mobile.js"></script>
+
 <script>
   function getStartLocation()
         {
@@ -184,6 +177,7 @@ label {
         }
   </script>
    <script>
+    window.onload
           function getEndLocation()
           {
             // Check whether browser supports Geolocation API or not
@@ -197,6 +191,8 @@ label {
 
         function getEndPosition(event)
         {
+          //????does this do anything?
+          event.enableHighAccuracy= true;
           document.getElementById("end_lat").value = event.coords.latitude;
           document.getElementById("end_lng").value = event.coords.longitude;
           document.getElementById("end_time").value = moment().format('HH:mm');
@@ -223,7 +219,7 @@ label {
 <div data-role="page" id="materials">
 
   <div role="main" class="ui-content">
-    <h1>This is a checklist of things you will need</h1>
+    <h1>Check that you have the following:</h1>
       <div class= "check">
       <form name="materiallist">
           <label><input type="checkbox"/> Sampling net with line & flow meter </label> <br>
@@ -237,13 +233,8 @@ label {
           <label><input type="checkbox"/> Pencil</label> <br>
           <label><input type="checkbox"/> Sharpener </label> <br>
           <label><input type="checkbox"/> Clipboard </label><br>
-          <label><input type="checkbox"/> Sieves </label> <br>
-      </div>
-      <div class="sublabel"> 
-          <label><input type="checkbox"/> 0.5 mm Sieve </label> <br>
-          <label><input type="checkbox"/> .330 mm Sieve </label> <br>
-      </div>
-      <div class= "check"> 
+          <label><input type="checkbox"/> 0.5mm Sieve </label><br>
+          <label><input type="checkbox"/> .330 mm Sieve</label><br>
           <label><input type="checkbox"/> Squirt bottle </label><br>
           <label><input type="checkbox"/> Electrical tape </label> <br>
           <label><input type="checkbox"/> Duct tape</label> <br>
@@ -259,27 +250,22 @@ label {
  /page -->
 <div data-role="page" id="precheck">
    <div role="main" class="ui-content">
-    <h1>Before Sampling:</h1>
+    <h1>Complete Before Sampling:</h1>
       <div class= "check">
       <form name="materiallist">
-        <h2>Pre-Sampling: </h2>
           <label><input type="checkbox" required/> Ensure Cod End is Secure </label> <br>
           <label><input type="checkbox"/> Check for Holes in Net </label> <br>
           <label><input type="checkbox"/> Check for Missing Zip-Ties, Replace as necessary </label> <br>
           <label><input type="checkbox"/> Tighten Brindle Connection with Crescent Wrench </label> <br>
           <label><input type="checkbox"/> Check That Flowmeter is Secure </label> <br>
           <label><input type="checkbox"/> Check That Line is Secure and Free of Knots </label><br>
-          <label><input type="checkbox"/> Locate 5 Empty Jars </label> <br>
-          <label><input type="checkbox"/> Label 3 Sample Jars (or more if necessary) </label>
-          <h5>Convention for sample label:Group Name, date, sample number: xxx_yyyymmdd_# <br> Ex: UWS_20190819_1 <h5>
+          <label><input type="checkbox"/> Locate and Label Empty Jars </label> <br>
           <label><input type="checkbox"/> Clean Sieves</label> <br>
           <label><input type="checkbox"/> Fill Squirt Bottles </label> <br>
           <label><input type="checkbox"/> Assemble Sample Jars, Sieves, and Squirt Bottles in a Plastic Tub </label><br>
-
-      <h2>Preparation of the net: </h2>
           <label><input type="checkbox"/>Ensure line is not tangled</label> <br>
-          <label><input type="checkbox"/>Tie-off line to sampling net </label> <br>
-          <label><input type="checkbox"/> Tie-off line to cleat on boat. If using prop/power, ensure net is out of prop-wash </label><br>
+          <label><input type="checkbox"/>Tie-off line to sampling net and cleat on boat </label> <br>
+         
 
       </form>
       </div>
@@ -295,7 +281,7 @@ label {
 <div data-role="page" id="form">
    <div role="main" class="ui-content">
 <div class= "header">
-<h1>Microplastic Sampling Form</h1>
+<h1>Microplastic Sample Data</h1>
 </div>
 <form name="microplastic-sampling">
 
@@ -306,7 +292,7 @@ label {
         <label for="sample_date">Sample Date</label>
       </div>
       <div class="col-75">
-        <input type="date" id="date" name="sample_date" value= ""placeholder="mm/dd/yyyy" required>
+        <input type="date" id="date" name="sample_date" value= ""placeholder="mm/dd/yyyy"
       </div>
     </div>
 
@@ -315,7 +301,7 @@ label {
         <label for="sample_location">Sample Location</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sample_location" name="sample_location" placeholder="ex: Commencement Bay" required>
+        <input type="text" id="sample_location" name="sample_location" placeholder="ex: Commencement Bay">
       </div>
     </div>
     <div class="row">
@@ -323,7 +309,7 @@ label {
         <label for="sample_id">Sample ID Number</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sample_id" name="sample_id" placeholder="ex: UWT-20190819_1" required>
+        <input type="text" id="sample_id" name="sample_id" placeholder="ex: UWT-20190819_1">
       </div>
     </div>
     <div class="row">
@@ -331,7 +317,7 @@ label {
         <label for="sampler">Sampler</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sampler" name="sampler" placeholder="Your Name" required>
+        <input type="text" id="sampler" name="sampler" placeholder="Your Name">
       </div>
     </div>
         <div class="row">
@@ -339,7 +325,7 @@ label {
         <label for="net_#">Net #</label>
       </div>
       <div class="col-75">
-        <input type="text" id="net_#" name="net_#" required>
+        <input type="text" id="net_#" name="net_#" placeholder= "ex: 2">
       </div>
     </div>
     <div class="row">
@@ -380,7 +366,7 @@ label {
         <label for="start_flow">Start Flowmeter</label>
       </div>
       <div class="col-75">
-        <input type="text" id="start_flow" name="start_flow" placeholder="Reading at start of sampling" required>
+        <input type="text" id="start_flow" name="start_flow" placeholder="Reading at start of sampling">
       </div>
     </div>
       <div class="row">
@@ -420,7 +406,7 @@ label {
         <label for="net_#">End Flowmeter</label>
       </div>
       <div class="col-75">
-        <input type="text" id="end_flow" name="end_flow" placeholder="Reading at end of sampling" required>
+        <input type="text" id="end_flow" name="end_flow" placeholder="Reading at end of sampling">
       </div>
     </div>
        <div class="row">
