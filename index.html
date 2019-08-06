@@ -26,6 +26,12 @@ label {
   display: inline-block;
 }
 
+br {
+   display: block;
+   margin: 25px 0 !important;
+   content: ""
+}
+
 .sublabel {
   padding-left: 30px;
   display: inline-block;
@@ -42,7 +48,7 @@ label {
   border-radius: 4px;
   width: 100%;
   border: black ;
-  background-color: #4CAF50;
+  background-color: #0BAB2E;
   color: white !important;
   border-color: black;
   padding: 14px 28px;
@@ -57,7 +63,7 @@ label {
   width: 100%;
   height: 45px;
   border: black ;
-  background-color: #4CAF50 !important;
+  background-color: #0BAB2E !important;
   text-shadow: none !important;
   color: white !important;
   border-color: black !important;
@@ -72,7 +78,7 @@ label {
   border-radius: 4px;
   width: 100%;
   border: black ;
-  background-color: #4CAF50 !important;
+  background-color: #0BAB2E !important;
   text-shadow: none !important;
   color: white !important;
   border-color: black !important;
@@ -140,11 +146,7 @@ label {
   display: table;
   clear: both;
 }
-br {
-   display: block;
-   margin: 25px 0 !important;
-   content: ""
-}
+
 
 /* Responsive layout */
 @media screen and (max-width: 600px) {
@@ -162,27 +164,8 @@ br {
   <link rel="stylesheet" href="jquery.ui.datepicker.mobile.css" /> 
   <script src="jQuery.ui.datepicker.js"></script>
   <script src="jquery.ui.datepicker.mobile.js"></script>
-  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
 <script>
-//Register service worker for caching offline
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-    navigator.serviceWorker.register('offline.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  });
-}
-
-    //Function to make Mobile friendly Calendar
-  $( document ).bind( "mobileinit", function(){
-    $.mobile.page.prototype.options.degradeInputs.date = true;
-  }); 
   function getStartLocation()
         {
           // Check whether browser supports Geolocation API or not
@@ -236,6 +219,8 @@ br {
         var prevpagenum = pagenum-1;
         $("#page"+prevpagenum).slideDown("fast");
       }
+
+
     </script>
 
 </head>
@@ -308,7 +293,7 @@ br {
 <div class= "header">
 <h1>Microplastic Sample Data</h1>
 </div>
-<form name="microplastic-sampling">
+<form id= micro name="microplastic-sampling">
 
 
 <div class="container">
@@ -452,35 +437,57 @@ br {
       </div>
     </div>
 </div>
-</div>
-</div>
-  
-
-
-<script>
-
-      function oneclick() 
-      {
-        var scriptURL = 'https://script.google.com/macros/s/AKfycbwkhQBiZ12mZYhqpifKPvdidJiwl9oATmaPCgsGsMvP1DBzhqY/exec'
-        var form = document.forms['microplastic-sampling']
-        
-
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-          .then(response => alert("Success!  Press Ok to start a new sample"))
-          .catch(error => alert("Something went wrong.  Try again?"))
-      }
-    
-    </script>
-
-
-     <button class= "submitbtn" onclick= "oneclick(); reset()"> Submit Form </button>
-
+</div> 
+     <button id= valid class= "submitbtn"  onclick= "validateForm();"> Submit Form </button> 
   
   </form>
 </div>
+</div>
+
+<div data-role="page" id="subpage">
+   <div role="main" class="ui-content">
+<div class= "header">
+
+    <script>
+  //Function to make Mobile friendly Calendar
+  $( document ).bind( "mobileinit", function(){
+    $.mobile.page.prototype.options.degradeInputs.date = true;
+  }); 
+
+
+function validateForm()
+{
+  var fields = [ "sample_date", "sample_location", "sample_id", "sampler", "net_#", "start_lat", "start_lng", "start_flow", "end_lat", "end_lng", "end_flow"]
+
+  var i, l = fields.length;
+  var fieldname;
+  for (i = 0; i < l; i++) {
+    fieldname = fields[i];
+    if (document.forms["microplastic-sampling"][fieldname].value === "") {
+      alert(fieldname + " can not be blank");
+      var cansubmit= false;
+      return false;
+    }
+
+  }
+    
+  
+        var scriptURL = 'https://script.google.com/macros/s/AKfycbwkhQBiZ12mZYhqpifKPvdidJiwl9oATmaPCgsGsMvP1DBzhqY/exec'
+        var form = document.forms['microplastic-sampling']
+        var response= alert("Sample Data submitted successfully. Press OK to continue with another sample");
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!'))
+      
+      document.getElementById("micro").reset();
+    
+      };
+
+  
+    </script>
 
 </body>
-
 </html>
 
 <script>
