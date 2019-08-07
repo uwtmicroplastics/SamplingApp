@@ -165,63 +165,6 @@ br {
   <script src="jQuery.ui.datepicker.js"></script>
   <script src="jquery.ui.datepicker.mobile.js"></script>
 
-<script>
-  function getStartLocation()
-        {
-          // Check whether browser supports Geolocation API or not
-          if (navigator.geolocation) { // Supported
-          
-          navigator.geolocation.getCurrentPosition(getStartPosition);
-          } else { // Not supported
-          alert("Oops! This browser does not support HTML Geolocation.");
-          }
-        }
-        function getStartPosition(event)
-        {
-          document.getElementById("start_lat").value = event.coords.latitude;
-          document.getElementById("start_lng").value = event.coords.longitude;
-          document.getElementById("start_time").value = moment().format('HH:mm');
-          
-        }
-  </script>
-   <script>
-  
-          function getEndLocation()
-          {
-            // Check whether browser supports Geolocation API or not
-            if (navigator.geolocation) { // Supported
-            
-            navigator.geolocation.getCurrentPosition(getEndPosition);
-            } else { // Not supported
-            alert("Oops! This browser does not support HTML Geolocation.");
-            }
-          }
-
-        function getEndPosition(event)
-        {
-          //????does this do anything?
-          event.enableHighAccuracy= true;
-          document.getElementById("end_lat").value = event.coords.latitude;
-          document.getElementById("end_lng").value = event.coords.longitude;
-          document.getElementById("end_time").value = moment().format('HH:mm');
-          
-        }
-      </script>
-    <script>
-      function nextpage(pagenum) {
-        $("#page"+pagenum).slideUp("fast");
-        var nextpagenum = pagenum+1;
-        $("#page"+nextpagenum).slideDown("fast");
-      }
-
-      function prevpage(pagenum) {
-        $("#page"+pagenum).slideUp("fast");
-        var prevpagenum = pagenum-1;
-        $("#page"+prevpagenum).slideDown("fast");
-      }
-
-
-    </script>
 
 </head>
 <body>
@@ -444,17 +387,74 @@ br {
 </div>
 </div>
 
-<div data-role="page" id="subpage">
-   <div role="main" class="ui-content">
-<div class= "header">
 
     <script>
+
+  function getStartLocation()
+        {
+          // Check whether browser supports Geolocation API or not
+          if (navigator.geolocation) { // Supported
+          
+          navigator.geolocation.getCurrentPosition(getStartPosition);
+          } else { // Not supported
+          alert("Oops! This browser does not support HTML Geolocation.");
+          }
+        }
+        function getStartPosition(event)
+        {
+          document.getElementById("start_lat").value = event.coords.latitude;
+          document.getElementById("start_lng").value = event.coords.longitude;
+          document.getElementById("start_time").value = moment().format('HH:mm');
+          
+        }
+  
+  
+          function getEndLocation()
+          {
+            // Check whether browser supports Geolocation API or not
+            if (navigator.geolocation) { // Supported
+            
+            navigator.geolocation.getCurrentPosition(getEndPosition);
+            } else { // Not supported
+            alert("Oops! This browser does not support HTML Geolocation.");
+            }
+          }
+
+        function getEndPosition(event)
+        {
+          //????does this do anything?
+          event.enableHighAccuracy= true;
+          document.getElementById("end_lat").value = event.coords.latitude;
+          document.getElementById("end_lng").value = event.coords.longitude;
+          document.getElementById("end_time").value = moment().format('HH:mm');
+          
+        }
+    
+      function nextpage(pagenum) {
+        $("#page"+pagenum).slideUp("fast");
+        var nextpagenum = pagenum+1;
+        $("#page"+nextpagenum).slideDown("fast");
+      }
+
+      function prevpage(pagenum) {
+        $("#page"+pagenum).slideUp("fast");
+        var prevpagenum = pagenum-1;
+        $("#page"+prevpagenum).slideDown("fast");
+      }
+
+
+
   //Function to make Mobile friendly Calendar
   $( document ).bind( "mobileinit", function(){
     $.mobile.page.prototype.options.degradeInputs.date = true;
   }); 
 
-
+//script to send to google sheet using Fetch API
+var form = document.forms['microplastic-sampling']
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+  })
+  
 function validateForm()
 {
   var fields = [ "sample_date", "sample_location", "sample_id", "sampler", "net_#", "start_lat", "start_lng", "start_flow", "end_lat", "end_lng", "end_flow"]
@@ -490,11 +490,5 @@ function validateForm()
 </body>
 </html>
 
-<script>
-//script to send to google sheet using Fetch API
-var form = document.forms['microplastic-sampling']
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-  })
-</script>
+
 
